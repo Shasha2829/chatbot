@@ -1,0 +1,4 @@
+streamlit
+groq
+matplotlib
+numpy
