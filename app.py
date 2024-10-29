@@ -3,9 +3,6 @@ import streamlit as st
 from typing import Generator
 from groq import Groq, AuthenticationError, APIError
 import json
-import time
-import matplotlib.pyplot as plt
-import numpy as np
 
 st.set_page_config(page_icon="💬", layout="wide", page_title="Shaineze")
 
@@ -134,33 +131,8 @@ else:
             mime="application/json"
         )
 
-    dark_mode = st.sidebar.checkbox("Mode Nuit 🌙")
-    if dark_mode:
-        st.markdown(
-            """
-            <style>
-                body { background-color: #2E2E2E; color: #FFFFFF; }
-                .stButton > button { background-color: #444444; color: #FFFFFF; }
-                .stSidebar { background-color: #333333; color: #FFFFFF; }
-                .css-1aumxhk, .css-18e3th9, .css-1inwz7h { background-color: #2E2E2E !important; color: #FFFFFF !important; }
-                a { color: #1E90FF !important; }
-            </style>
-            """,
-            unsafe_allow_html=True
-        )
-    else:
-        st.markdown(
-            """
-            <style>
-                body { background-color: #FFFFFF; color: #000000; }
-                .stButton > button { background-color: #F0F0F0; color: #000000; }
-                .stSidebar { background-color: #F8F9FA; color: #000000; }
-                .css-1aumxhk, .css-18e3th9, .css-1inwz7h { background-color: #FFFFFF !important; color: #000000 !important; }
-                a { color: #0000EE !important; }
-            </style>
-            """,
-            unsafe_allow_html=True
-        )
+    # Suppression de la fonctionnalité de mode nuit
+    # Suppression de l'affichage du graphique exemple
 
     tone = st.selectbox("Choisissez le ton de la réponse", ["Formelle", "Amicale", "Neutre"])
     length = st.slider("Longueur de la réponse", min_value=50, max_value=500, step=50, value=150)
@@ -178,9 +150,3 @@ else:
         except Exception as e:
             st.error(f"Erreur lors de la génération du résumé : {e}")
 
-    if st.button("Afficher graphique exemple"):
-        x = np.linspace(0, 10, 100)
-        y = np.sin(x)
-        fig, ax = plt.subplots()
-        ax.plot(x, y)
-        st.pyplot(fig)
